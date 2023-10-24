@@ -1,0 +1,36 @@
+---
+title: How to FULLY Customize Leaflet Maps using R programming
+---
+
+Checar se tem todos os pacotes necessários. Caso não tenha, instalar os que faltam.
+```{r}  
+# pacotes necessários
+libs <- c(
+    "tidyverse", # data manipulation
+    "leaflet", # leaflet library
+    "leaflet.extras", # extras of leaflet
+    "sf", # geodata manipulation
+    "knitr", # for kable tables
+    "BFS" # Swiss Federal Statistical Office Data
+)
+
+# checar se todos os pacotes necessários já estão instalados
+installed_libs <- libs %in% rownames(
+    installed.packages()
+)
+
+# instalar pacotes que não estão instalados
+if(any(installed_libs == FALSE)){
+    install.packages(
+        libs[!installed_libs]
+    )
+}
+
+# carregar pacotes (etapa opcional)
+invisible(lapply(
+    libs, library,
+    character.only = T
+))
+
+```
+
