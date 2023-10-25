@@ -1,9 +1,18 @@
 ---
 title: How to FULLY Customize Leaflet Maps using R programming
+format:
+  html:
+    toc: true
+    number-sections: true
+    css: styles.css
 ---
 
+## Pacotes necessários
 Checar se tem todos os pacotes necessários. Caso não tenha, instalar os que faltam.
 ```{r}  
+#| label: install_packcages
+#| fig-cap: "Bloco para instalação de pacotes"
+#| warning: false
 # pacotes necessários
 libs <- c(
     "tidyverse", # data manipulation
@@ -31,6 +40,29 @@ invisible(lapply(
     libs, library,
     character.only = T
 ))
+
+```
+
+
+```{r}
+
+tables_names <- BFS::bfs_get_catalog_tables(
+    language =  "en",
+    title = "last+names"
+)
+
+```
+
+
+```{r}
+
+asset_names_commune <- tables_names |>
+    dplyr::filter(stringr::str_detect(title, "commune")) |>
+    dplyr::pull(number_asset)
+
+# apenas o primeiro item da lista
+asset_names_commune <- asset_names_commune[1]
+
 
 ```
 
